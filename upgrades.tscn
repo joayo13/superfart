@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://fyesdfc7ski7"]
+
+[ext_resource type="Script" path="res://upgrades.gd" id="1_njafp"]
+[ext_resource type="Texture2D" uid="uid://yv6cow4mw1qw" path="res://background/pixelhell.png" id="1_vx44g"]
+[ext_resource type="Script" path="res://Health.gd" id="2_3q4hh"]
+[ext_resource type="FontFile" uid="uid://bl56xanfdcgi2" path="res://PressStart2P-Regular.ttf" id="3_ronrj"]
+[ext_resource type="Script" path="res://UpgradeHealth.gd" id="4_ht0w8"]
+[ext_resource type="Script" path="res://Gold.gd" id="5_654o1"]
+[ext_resource type="Script" path="res://Gas.gd" id="7_buyb3"]
+[ext_resource type="Script" path="res://UpgradeGas.gd" id="8_60cqo"]
+
+[node name="Upgrades" type="Node"]
+script = ExtResource("1_njafp")
+
+[node name="Pixelhell" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(327.5, 815)
+scale = Vector2(2.41419, 3.18333)
+texture = ExtResource("1_vx44g")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 11.0
+offset_top = 68.0
+offset_right = 712.0
+offset_bottom = 217.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_ronrj")
+theme_override_font_sizes/font_size = 40
+text = "MAIN MENU"
+
+[node name="Health" type="Label" parent="."]
+offset_left = 45.0
+offset_top = 294.0
+offset_right = 198.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("3_ronrj")
+theme_override_font_sizes/font_size = 40
+script = ExtResource("2_3q4hh")
+
+[node name="UpgradeHealth" type="Button" parent="."]
+offset_left = 296.0
+offset_top = 258.0
+offset_right = 703.0
+offset_bottom = 388.0
+theme_override_fonts/font = ExtResource("3_ronrj")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("4_ht0w8")
+
+[node name="Gold" type="Label" parent="."]
+offset_left = 13.0
+offset_top = 25.0
+offset_right = 408.0
+offset_bottom = 93.0
+theme_override_fonts/font = ExtResource("3_ronrj")
+theme_override_font_sizes/font_size = 30
+script = ExtResource("5_654o1")
+
+[node name="Gas" type="Label" parent="."]
+offset_left = 27.0
+offset_top = 466.0
+offset_right = 185.0
+offset_bottom = 517.0
+theme_override_fonts/font = ExtResource("3_ronrj")
+theme_override_font_sizes/font_size = 40
+script = ExtResource("7_buyb3")
+
+[node name="UpgradeGas" type="Button" parent="."]
+offset_left = 297.0
+offset_top = 426.0
+offset_right = 698.0
+offset_bottom = 550.0
+theme_override_fonts/font = ExtResource("3_ronrj")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("8_60cqo")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UpgradeHealth" to="." method="_on_upgrade_health_pressed"]
+[connection signal="pressed" from="UpgradeGas" to="." method="_on_upgrade_gas_pressed"]
