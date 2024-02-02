@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cme6mhwtxesyr"]
+
+[ext_resource type="Script" path="res://collectibles/beans.gd" id="1_5xumw"]
+[ext_resource type="Texture2D" uid="uid://cp5wh00cry6pl" path="res://collectibles/undoubled bean.png" id="2_qheil"]
+[ext_resource type="FontFile" uid="uid://bl56xanfdcgi2" path="res://PressStart2P-Regular.ttf" id="3_1c1uq"]
+[ext_resource type="AudioStream" uid="uid://bwfxeh4e4hevt" path="res://eatbean.mp3" id="4_6jpyt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4vcsp"]
+radius = 7.0
+height = 16.0
+
+[node name="Beans" type="Area2D"]
+z_index = 10
+script = ExtResource("1_5xumw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+texture = ExtResource("2_qheil")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4, 4)
+shape = SubResource("CapsuleShape2D_4vcsp")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -44.0
+offset_top = -49.0
+offset_right = 52.0
+offset_bottom = -14.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_1c1uq")
+theme_override_font_sizes/font_size = 32
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6jpyt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

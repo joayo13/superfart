@@ -1,0 +1,14 @@
+extends Node
+
+
+var MAX_GAS = 50
+var GAS = MAX_GAS
+var GOLD = 0
+var MAX_HEALTH = 50
+var HEALTH = MAX_HEALTH
+var THIS_GAS_SCORE = 0
+var HIGHEST_GAS_SCORE = 0
+var BN_KILLED_SCORE = 0
+var THIS_BN_KILLED_SCORE = 0
+var DEATH_MESSAGE = ''
+var LAST_MOB_DEATH = ''

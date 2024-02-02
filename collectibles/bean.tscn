@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgh6vo6to77ww"]
+
+[sub_resource type="GDScript" id="GDScript_ydsbh"]
+script/source = "extends Area2D
+
+var up = false
+	
+func _ready():
+	var tween = get_tree().create_tween()
+	tween.connect(\"finished\", on_tween_finished)
+	tween.tween_property(self, \"position\", position - Vector2(0, 10), 1)
+	up = true
+func on_tween_finished():
+	var tween = get_tree().create_tween()
+	tween.connect(\"finished\", on_tween_finished)
+	if up:
+		tween.tween_property(self, \"position\", position - Vector2(0, -10), 1)
+		up = false
+	else: 
+		tween.tween_property(self, \"position\", position - Vector2(0, 10), 1)
+		up = true
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		queue_free()
+		Game.GAS += 10
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gsnph"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjbap"]
+radius = 6.25
+height = 16.0
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(91, 186)
+script = SubResource("GDScript_ydsbh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_gsnph")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hjbap")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

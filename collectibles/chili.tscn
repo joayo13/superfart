@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://be5v7uk8rme4i"]
+
+[ext_resource type="Script" path="res://collectibles/chili.gd" id="1_w2rbs"]
+[ext_resource type="Texture2D" uid="uid://dsdjljbp75hoh" path="res://collectibles/undoubled chili.png" id="2_8wxtm"]
+[ext_resource type="FontFile" uid="uid://bl56xanfdcgi2" path="res://PressStart2P-Regular.ttf" id="3_cmtye"]
+[ext_resource type="AudioStream" uid="uid://cflxkihbkhfyr" path="res://eatchili.mp3" id="4_e1rmf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m1l07"]
+radius = 35.0
+height = 70.0
+
+[node name="Chili" type="Area2D"]
+z_index = 11
+texture_filter = 1
+script = ExtResource("1_w2rbs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+texture = ExtResource("2_8wxtm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_m1l07")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = -64.0
+offset_top = -48.0
+offset_right = 64.0
+offset_bottom = -13.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_cmtye")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e1rmf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

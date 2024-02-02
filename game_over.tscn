@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgupbr0awkrdf"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_2mun8"]
+[ext_resource type="FontFile" uid="uid://bl56xanfdcgi2" path="res://PressStart2P-Regular.ttf" id="1_7galo"]
+[ext_resource type="Script" path="res://DEATH_INFO.gd" id="3_4yv8f"]
+
+[node name="GameOver" type="Node"]
+script = ExtResource("1_2mun8")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 158.0
+offset_right = 755.0
+offset_bottom = 384.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 70
+text = "GAME OVER"
+
+[node name="DEATH_INFO" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 243.0
+offset_right = 390.0
+offset_bottom = 295.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("3_4yv8f")
+
+[node name="G_A_S" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 324.0
+offset_right = 437.0
+offset_bottom = 414.0
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+text = "GAS ALTITUDE SCORE:"
+
+[node name="GAS_SCORE" type="Label" parent="."]
+offset_left = 437.0
+offset_top = 324.0
+offset_right = 723.0
+offset_bottom = 433.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+
+[node name="G_A_S_TIMER" type="Timer" parent="GAS_SCORE"]
+wait_time = 0.14
+autostart = true
+
+[node name="BN_KILLED" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 414.0
+offset_right = 455.0
+offset_bottom = 503.0
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+text = "BROWNOSERS DESTROYED:"
+
+[node name="BN_KILLED_SCORE" type="Label" parent="."]
+offset_left = 455.0
+offset_top = 414.0
+offset_right = 538.0
+offset_bottom = 469.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+
+[node name="BN_TIMER" type="Timer" parent="BN_KILLED_SCORE"]
+wait_time = 0.158
+
+[node name="GOLD_EARNED" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 503.0
+offset_right = 295.0
+offset_bottom = 526.0
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+text = "GOLD EARNED: "
+
+[node name="GOLD_EARNED_SCORE" type="Label" parent="."]
+offset_left = 295.0
+offset_top = 503.0
+offset_right = 355.0
+offset_bottom = 526.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+
+[node name="GOLD_TIMER" type="Timer" parent="GOLD_EARNED_SCORE"]
+wait_time = 0.056
+
+[node name="START" type="Button" parent="."]
+offset_left = 101.0
+offset_top = 740.0
+offset_right = 592.0
+offset_bottom = 926.0
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+text = "CONTINUE"
+
+[node name="MAIN_MENU" type="Button" parent="."]
+offset_left = 101.0
+offset_top = 997.0
+offset_right = 592.0
+offset_bottom = 1183.0
+theme_override_fonts/font = ExtResource("1_7galo")
+theme_override_font_sizes/font_size = 20
+text = "MAIN MENU"
+
+[connection signal="timeout" from="GAS_SCORE/G_A_S_TIMER" to="." method="_on_g_a_s_timer_timeout"]
+[connection signal="timeout" from="BN_KILLED_SCORE/BN_TIMER" to="." method="_on_bn_timer_timeout"]
+[connection signal="timeout" from="GOLD_EARNED_SCORE/GOLD_TIMER" to="." method="_on_gold_timer_timeout"]
+[connection signal="pressed" from="START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MAIN_MENU" to="." method="_on_main_menu_pressed"]
